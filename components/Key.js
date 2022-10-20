@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default class Key extends Component {
+    style = styles.default
+
     constructor(props) {
         super(props);
         this.state = {
-            style: styles.default
+            style: this.style
         };
     }
 
@@ -14,7 +16,7 @@ export default class Key extends Component {
             <View style={this.state.style}>
                 <TouchableOpacity style={{ flex: 1 }}
                     onPress={() => { this.props.onClick(this.props.value) }}>
-                    <Text> {this.props.text} </Text>
+                    <Text style={{ flex: 1, fontSize: 48, textAlign: "center", textAlignVertical: "center" }}> {this.props.text}</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -22,5 +24,5 @@ export default class Key extends Component {
 }
 
 const styles = StyleSheet.create({
-    default: { fontSize: 48, backgroundColor: "#ff0000", flex: 1 }
+    default: { backgroundColor: "#ff0000", flex: 1 }
 });
