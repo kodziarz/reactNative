@@ -58,7 +58,9 @@ export default class Calculator extends Component {
     }
 
     calculateResult = () => {
-        this.setState({ currentResult: eval(this.state.currentOpreations) })
+        if (this.state.currentOpreations.match(/^\d+(\.\d+)?([+-/*]\d+(\.\d+)?)+$/g) != null)
+            this.setState({ currentResult: eval(this.state.currentOpreations) })
+        else this.setState({ currentResult: "Nieprawidłowe wyrażenie" })
     }
 
     render() {
@@ -122,35 +124,44 @@ export default class Calculator extends Component {
                 <View style={{ flex: 1 }}>
                     <OperatorKey key={0} style={{ flex: 1 }}
                         text={"Sqrt"} value={0} onClick={() => {
-                            let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
-                            this.setState({
-                                currentOpreations: "",
-                                currentResult: Math.sqrt(currentResult)
-                            })
+                            if (this.state.currentOpreations.match(/(^\d+(\.\d+)?([+-/*]\d+(\.\d+)?)+$|^$)/g) != null) {
+                                let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
+                                this.setState({
+                                    currentOpreations: "",
+                                    currentResult: Math.sqrt(currentResult)
+                                })
+                            } else this.setState({ currentResult: "Nieprawidłowe wyrażenie" })
                         }} />
                     <OperatorKey key={1} style={{ flex: 1 }}
                         text={"Pow"} value={0} onClick={() => {
-                            let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
-                            this.setState({
-                                currentOpreations: "",
-                                currentResult: currentResult * currentResult
-                            })
+                            if (this.state.currentOpreations.match(/(^\d+(\.\d+)?([+-/*]\d+(\.\d+)?)+$|^$)/g) != null) {
+                                let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
+                                this.setState({
+                                    currentOpreations: "",
+                                    currentResult: currentResult * currentResult
+                                })
+                            } else this.setState({ currentResult: "Nieprawidłowe wyrażenie" })
                         }} />
                     <OperatorKey key={2} style={{ flex: 1 }}
                         text={"sin"} value={0} onClick={() => {
-                            let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
-                            this.setState({
-                                currentOpreations: "",
-                                currentResult: Math.sin(currentResult)
-                            })
+                            if (this.state.currentOpreations.match(/(^\d+(\.\d+)?([+-/*]\d+(\.\d+)?)+$|^$)/g) != null) {
+                                let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
+                                this.setState({
+                                    currentOpreations: "",
+                                    currentResult: Math.sin(currentResult)
+                                })
+                            } else this.setState({ currentResult: "Nieprawidłowe wyrażenie" })
                         }} />
                     <OperatorKey key={3} style={{ flex: 1 }}
                         text={"cos"} value={0} onClick={() => {
-                            let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
-                            this.setState({
-                                currentOpreations: "",
-                                currentResult: Math.cos(currentResult)
-                            })
+
+                            if (this.state.currentOpreations.match(/(^\d+(\.\d+)?([+-/*]\d+(\.\d+)?)+$|^$)/g) != null) {
+                                let currentResult = this.state.currentOpreations != "" ? eval(this.state.currentOpreations) : this.state.currentResult
+                                this.setState({
+                                    currentOpreations: "",
+                                    currentResult: Math.cos(currentResult)
+                                })
+                            } else this.setState({ currentResult: "Nieprawidłowe wyrażenie" })
                         }} />
                 </View>
                 <View style={{ flex: 1 }}>
