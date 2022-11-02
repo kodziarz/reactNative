@@ -35,22 +35,27 @@ export default class Calculator extends Component {
     }
 
     handleKeyClicked = (value) => {
-        switch (value) {
-            case Calculator.SPECIAL_OPERATORS.RESULT:
+        switch (true) {
+            case Calculator.SPECIAL_OPERATORS.RESULT === value:
                 this.calculateResult()
                 break
-            case Calculator.SPECIAL_OPERATORS.DELETE:
+            case Calculator.SPECIAL_OPERATORS.DELETE === value:
                 this.setState({
                     currentOpreations: this.state.currentOpreations.slice(0, -1),
                     currentResult: ""
                 })
                 break
-            case Calculator.SPECIAL_OPERATORS.CLEAR:
+            case Calculator.SPECIAL_OPERATORS.CLEAR === value:
                 this.setState({
                     currentOpreations: "",
                     currentResult: ""
                 })
                 break
+            case this.state.operators.includes(value): // ten przypadek służy temu, by wpisanie drugiego operatora z rzędu go zastępowało
+                let lastIndex = this.state.currentOpreations.length - 1
+                if (this.state.operators.includes(this.state.currentOpreations[lastIndex]))
+                    this.state.currentOpreations = this.state.currentOpreations.slice(0, -1) // ucinamy ostatni znak
+            // celowy brak breaka
             default:
                 this.setState({ currentOpreations: this.state.currentOpreations + value })
                 break
